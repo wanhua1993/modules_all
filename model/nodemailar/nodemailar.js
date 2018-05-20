@@ -7,7 +7,7 @@ const params = {
     secture: false,
     auth: {
         user: '13400133993@163.com',
-        pass: 'wanhua1993'
+        pass: 'wanhua1993' // 这里的密码不是 邮箱的登录密码 而是 通过邮箱内 设置 形成的授权码 这个可以自己进行设置
     }
 }
 // 邮件信息

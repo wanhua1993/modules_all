@@ -4,11 +4,13 @@ var moment = require('moment');
 var U = require('../model/uuid/uuid'); // 獲取uuid
 var request = require('request'); // 請求鷹眼數據
 var cheerio_f = require('../model/cheerio/cheerio'); //爬取網頁內容
-var send = require('../model/nodemailar/nodemailar');
+var send = require('../model/nodemailar/nodemailar'); // 发送邮件
+var node_xlsx = require('../model/node-xlsx/node-xlsx'); // 读写 excel 文件
 /* GET home page. */
 router.get('/', function (req, res, next) {
   // cheerio_f();
   // send();
+  // node_xlsx();
   res.render('index', { title: 'Express' });
 });
 // 上传文件的模块 multer
