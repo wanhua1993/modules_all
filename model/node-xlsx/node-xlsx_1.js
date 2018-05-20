@@ -1,9 +1,4 @@
 // 这是读写 xlsx 文件的第二种方式
-var xlsx = require('node-xlsx'); var fs = require('fs');
-var obj = { "worksheets": [{ "data": [["姓名", "性别", "年龄"], ["李晓龙", "男", "24"]] }] };
-var file = xlsx.build(obj);
-fs.writeFileSync('user.xlsx', file, 'binary');
-
 //node.io版
 var nodeio = require('node.io');
 var xlsx = require('node-xlsx');
@@ -38,6 +33,6 @@ exports.job = new nodeio.Job({
         console.log('data:', data);
         var obj = { "worksheets": [{ "data": data }] };
         var file = xlsx.build(obj);
-        fs.writeFileSync('user.xlsx', file, 'binary');
+        fs.writeFileSync('../model/node-xlsx/user.xlsx', file, 'binary');
     }
 });
