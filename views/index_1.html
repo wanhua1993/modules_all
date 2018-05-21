@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Socket</title>
+</head>
+
+<body>
+    <div>
+        <%= title%>
+    </div>
+    <input type="text" id="val" value="123123">
+    <button class="wh_btn">发送</button>
+    <ul>
+        <li>
+
+        </li>
+    </ul>
+</body>
+
+</html>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var wh_btn = document.getElementsByClassName('wh_btn')[0];
+    var socket = io('http://localhost:3001');
+    socket.on('news', function (data) {
+        console.log(data);
+        if(data.from == 1) {
+            console.log(data);
+        }
+    });
+    wh_btn.addEventListener('click', function () {
+        var val = document.getElementById('val').value;
+        var opts = {
+            from: 2,
+            to: 1,
+            val: val
+        }
+        socket.emit('my other event', val);
+    });
+</script>

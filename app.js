@@ -3,17 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-
-
 // view engine setup
+app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.engine('.html', require('ejs').__express);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,8 +26,14 @@ app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
   res.header("X-Powered-By", ' 3.2.1')
   res.header("Content-Type", "application/json;charset=utf-8");
+  res.header("Content-Type", "text/html");
   next();
 });
+app.use(session({
+  secret: 'sessiontest',//与cookieParser中的一致
+  resave: true,
+  saveUninitialized:true
+}));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
@@ -39,6 +44,7 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
