@@ -8,7 +8,7 @@ var send = require('../model/nodemailar/nodemailar'); // 发送邮件
 var node_xlsx = require('../model/node-xlsx/node-xlsx'); // 读写 excel 文件
 // var node_xlsx_1 = require('../model/node-xlsx/node-xlsx_1'); // 读写 excel 文件的第二种方式
 // var node_xlsx_2 = require('../model/node-xlsx/node-xlsx_2'); // 读写 excel 文件的第三种方式
-
+var User = require('../model/mongodb/schema').User;
 /* GET home page. */
 router.get('/', function (req, res) {
   console.log(req.session);
@@ -39,7 +39,7 @@ router.post('/upload', function (req, res) {
     }
   });
 });
-router.post('/upload_1', function (req, res){
+router.post('/upload_1', function (req, res) {
   console.log(req.body);
   request({
     url: 'http://yingyan.baidu.com/api/v3/track/addpoint',
@@ -59,5 +59,24 @@ router.post('/upload_1', function (req, res){
       });
     }
   });
+});
+// 使用操作 mongoose 数据库
+router.post('/login', function (req, res) {
+  var val = req.body;
+  var user = new User({
+    username: val.username, //用户账号
+    password: val.password, //密码
+  });
+  // 插入一条数据
+  user.save(function (err, res) {
+    if (err) {
+      console.log("Error:" + err);
+
+    } else {
+      console.log("Res:" + res);
+
+    }
+  });
+  // 
 });
 module.exports = router;
