@@ -8,10 +8,10 @@ var send = require('../model/nodemailar/nodemailar'); // 发送邮件
 var node_xlsx = require('../model/node-xlsx/node-xlsx'); // 读写 excel 文件
 // var node_xlsx_1 = require('../model/node-xlsx/node-xlsx_1'); // 读写 excel 文件的第二种方式
 // var node_xlsx_2 = require('../model/node-xlsx/node-xlsx_2'); // 读写 excel 文件的第三种方式
-var User = require('../model/mongodb/schema').User;
+var save = require('../model/mongodb/index').save_use;
 /* GET home page. */
 router.get('/', function (req, res) {
-  console.log(req.session);
+  save();
   res.render('index', { title: 'Express' });
 });
 router.get('/1', function (req, res) {

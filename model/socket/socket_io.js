@@ -21,11 +21,11 @@ exports.get_socket = function (server) {
                 id: data.id,
                 socket: socket
             });
-            console.log(users);
+            // console.log(users);
         });
         socket.on('private', function (data) {
             var id = data.id;
-            console.log(data);
+            // console.log(data);
             users[0].socket.emit('news', data);
             // for(var i = 0; i < users[i].length; i ++) {
             //     if(users[i].id == id) {

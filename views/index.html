@@ -24,19 +24,19 @@
 </html>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    var wh_btn = document.getElementsByClassName('wh_btn')[0];
-    var socket = io('http://localhost:3001');
-    socket.on('news', function (data) {
-        alert(JSON.stringify(data));
-    });
-    var id = Date.now();
-    socket.emit('getId', {id: id});
-    wh_btn.addEventListener('click', function () {
-        var val = document.getElementById('val').value;
-        var opts = {
-            id: id,
-            val: val
-        }
-        socket.emit('private', opts);
-    });
+    // var wh_btn = document.getElementsByClassName('wh_btn')[0];
+    // var socket = io('http://localhost:3001');
+    // socket.on('news', function (data) {
+    //     alert(JSON.stringify(data));
+    // });
+    // var id = Date.now();
+    // socket.emit('getId', {id: id});
+    // wh_btn.addEventListener('click', function () {
+    //     var val = document.getElementById('val').value;
+    //     var opts = {
+    //         id: id,
+    //         val: val
+    //     }
+    //     socket.emit('private', opts);
+    // });
 </script>
