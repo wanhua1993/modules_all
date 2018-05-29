@@ -33,6 +33,7 @@
     "node.io": "^0.5.1",
     "nodemailer": "^4.6.4",
     "request": "^2.86.0",
+    "sharp": "^0.20.2",
     "socket.io": "^2.1.1",
     "utils-merge": "^1.0.1",
     "uuid": "^3.2.1",

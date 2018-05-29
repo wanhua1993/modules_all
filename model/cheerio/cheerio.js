@@ -3,7 +3,7 @@ var http = require('http');
 var cheerio = require('cheerio');
 var request = require('request');
 var fs = require('fs');
-var url = 'http://www.ziroom.com/'; // 这是自如的网址
+var url = 'https://baike.baidu.com/item/%E5%B7%9D%E8%B4%9D'; // 这是自如的网址
 
 var cheerio_f = function () {
     // 請求網頁內容
@@ -15,7 +15,8 @@ var cheerio_f = function () {
         res.on('end', function () {
             console.log('结束');
             var data = guolv(html);
-            save_pic(data);
+            console.log(data);
+            // save_pic(data);
         });
     }).on('error', function (err) {
         console.log(err);
@@ -24,16 +25,15 @@ var cheerio_f = function () {
     function guolv(html) {
         if (html) {
             var $ = cheerio.load(html);
-            var slideList = $('#foucsSlideList');
+            var slideList = $('.tage_list');
             var slideListData = [];
             slideList.find('li').each(function (val) {
                 var item = $(this);
-                var aHref = item.children('a').attr('href');
-                var image_path = item.children('a').children('img').attr('_src');
-                var aTitle = item.children('a').attr('title');
+                var text = item.find('.p_top').text();
+                // var image_path = item.children('a').children('img').attr('_src');
+                var aTitle = item.find('.format').text();
                 slideListData.push({
-                    aHref: aHref,
-                    image_path: image_path,
+                    text: text,
                     aTitle: aTitle
                 });
             });
